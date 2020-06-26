@@ -3,6 +3,7 @@ var app = new Vue({
     data: {
         product: "Socks",
         image: "https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg",
-        altText: "A pair of socks"
+        altText: "A pair of socks",
+        href: "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=socks"
     }
 })
