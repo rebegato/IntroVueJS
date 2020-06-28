@@ -12,12 +12,12 @@ var app = new Vue({
         variants: [
             {
                 variantId: 2234,
-                variantColor: "Green",
+                variantColor: "green",
                 variantImage: "https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg"
             },
             {
                 variantId: 2235,
-                variantColor: "Blue",
+                variantColor: "blue",
                 variantImage: "https://www.vuemastery.com/images/challenges/vmSocks-blue-onWhite.jpg"
             }
         ],
