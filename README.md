@@ -1,7 +1,15 @@
 # Vue-exProy1
 Vue Example Project 1.
 
-# What else should we know?
+# Notes
+
+## Key attribute
+
+Note that it is recommended to use a special key attribute when rendering elements like this so that Vue can keep track of each node’s identity. We’ll add that in now, using our variant’s unique variantId property.
+
+    <div class="color-box" v-for="(variant, index) in variants" 
+            :key="variant.variantId"
+    </div>
 
 ## Methods vs Computed properties
 
