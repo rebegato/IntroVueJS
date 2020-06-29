@@ -37,5 +37,16 @@ It is also important to remember that you should not be mutating your data model
 * A component can $emit data along with the announcement that an event has occurred
 * A parent can use data emitted from its child
 
-![alt text](component-hierarchy.PNG)
+![component-hierarchy](component-hierarchy.PNG)
 
+## Forms
+
+We can use the v-model directive to create two-way binding on form elements
+We can use the .number modifier to tell Vue to cast that value as a number, but there is a bug with it
+We can use the .prevent event modifier to stop the page from reloading when the form is submitted
+
+### Using **.number**
+
+Using the .number modifier on v-model is a helpful feature, but please be aware there is a known bug with it. If the value is blank, it will turn back into a string. [The Vue.js Cookbook](https://vuejs.org/v2/cookbook/form-validation.html#Another-Example-of-Custom-Validation) offers the solution to wrap that data in the Number method, like so:
+
+    Number(this.myNumber)
