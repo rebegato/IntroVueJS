@@ -26,10 +26,7 @@ Vue.component('product', {
             <div class="product">
 
             <div class="product-image">
-                <img v-bind:src="image" v-bind:alt="altText" />
-                <div class="cart">
-                    <p> Cart({{cart}}) </p>
-                </div>                
+                <img v-bind:src="image" v-bind:alt="altText" />                
                 <button :class="{ disabledButton: !inStock }" 
                     v-on:click="addToCart" :disabled="!inStock">Add to Cart</button>
                 <button @click="removeFromCart">Remove from Cart</button>
@@ -87,16 +84,15 @@ Vue.component('product', {
                     onSale: false
                 }
             ],
-            sizes: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-            cart: 0
+            sizes: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
         }
     },
     methods: {
         addToCart: function () {
-            this.cart += 1;
+            this.$emit('add-to-cart', this.variants[this.selectVariant].variantId);
         },
         removeFromCart: function () {
-            this.cart -= 1;
+            this.$emit('remove-from-cart', this.variants[this.selectVariant].variantId);
         },
         updateProduct(index) {
             this.selectVariant = index;
@@ -126,6 +122,18 @@ Vue.component('product', {
 var app = new Vue({
     el: '#app',
     data: {
-        premium: false
+        premium: false,
+        cart: []
+    },
+    methods: {
+        updateCart(id) {
+            this.cart.push(id)
+        },
+        removeFromCart(id){
+            const index = this.cart.findIndex( e => e === id);
+            if (index > -1) {
+                this.cart.splice(index, 1);
+            }
+        }
     }
 })
