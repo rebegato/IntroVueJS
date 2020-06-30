@@ -1,6 +1,4 @@
-# Vue-exProy1
-Vue Example Project 1.
-
+# VueJS Intro Project
 # Notes
 
 ## Key attribute
