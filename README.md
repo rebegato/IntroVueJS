@@ -39,6 +39,24 @@ It is also important to remember that you should not be mutating your data model
 
 ![component-hierarchy](component-hierarchy.PNG)
 
+### Comunication grandchild up to a grandparent
+
+A common solution for communicating from a grandchild up to a grandparent, or for communicating between components, is to use what’s called a global event bus.
+
+This is essentially a channel through which you can send information amongst your components, and it’s just a Vue instance, without any options passed into it. Let’s create our event bus now.
+
+    var eventBus = new Vue()
+
+Child' Code
+
+    eventBus.$emit('review-submitted', productReview)
+
+Parent’s Code
+
+    eventBus.$on('review-submitted', productReview => {
+        this.reviews.push(productReview)
+    })
+
 ## Forms
 
 We can use the v-model directive to create two-way binding on form elements
@@ -50,3 +68,11 @@ We can use the .prevent event modifier to stop the page from reloading when the 
 Using the .number modifier on v-model is a helpful feature, but please be aware there is a known bug with it. If the value is blank, it will turn back into a string. [The Vue.js Cookbook](https://vuejs.org/v2/cookbook/form-validation.html#Another-Example-of-Custom-Validation) offers the solution to wrap that data in the Number method, like so:
 
     Number(this.myNumber)
+
+## Why the ES6 Syntax?
+
+We’re using the ES6 arrow function syntax here because an arrow function is bound to its parent’s context. In other words, when we say this inside the function, it refers to this component/instance. You can write this code without an arrow function, you’ll just have to manually bind the component’s this to that function, like so:
+
+    eventBus.$on('review-submitted', function (productReview) {
+      this.reviews.push(productReview)
+    }.bind(this))
